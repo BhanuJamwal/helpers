@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        
+    </head>
+    <body>
+        <div>
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log in</a>
+            <br>
+            <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Log out</a>
+            <br>
+            <a href="{% url 'signup' %}" class="btn btn-outline-secondary">sign in</a>
+            <br>
+            <a href="{% url 'password_reset' %}" class="btn btn-outline-secondary">forgotten password?</a>
+            <br>
+            <a href="{% url 'password_change' %}" class="btn btn-outline-secondary">change password</a>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

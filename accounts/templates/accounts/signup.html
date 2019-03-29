@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>auth page</title>
+</head>
+<body>
+
+<h1>signup</h1>
+<div id="signup">
+	<form method="Post" novalidate>
+		{% csrf_token %}
+		{% include 'includes/forms.html' %}
+		<button type="submit" class="btn-btn-primary">create an account</button>
+	</form>	
+
+</body>
+</html>
