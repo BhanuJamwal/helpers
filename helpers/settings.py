@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'verification',
     'accounts',
     'widget_tweaks',
+    'Status',
 ]
 
 MIDDLEWARE = [
