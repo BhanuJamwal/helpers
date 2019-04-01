@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'otp_yubikey',
     'rest_framework',
-    'verification',
     'accounts',
     'widget_tweaks',
     'Status',
