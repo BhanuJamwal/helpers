@@ -15,13 +15,13 @@ urlpatterns = [
 	path('reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/password_reset_done.html'),
     name='password_reset_done'),
 	path('reset/<uidb64>/<token>/',
-    auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
+    auth_views.PasswordResetConfirmView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/password_reset_confirm.html'),name='password_reset_confirm'),
 	path('reset/complete/',
-    auth_views.PasswordResetCompleteView.as_view(),
+    auth_views.PasswordResetCompleteView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/password_reset_complete.html'),
     name='password_reset_complete'),
-    path('settings/password/', auth_views.PasswordChangeView.as_view(),
+    path('settings/password/', auth_views.PasswordChangeView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/password_change.html'),
         name='password_change'),
-    path('settings/password/done/', auth_views.PasswordChangeDoneView.as_view(),
+    path('settings/password/done/', auth_views.PasswordChangeDoneView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/password_reset.html'),
         name='password_change_done'),
 
 ]
