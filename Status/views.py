@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from Status .models import Boards,Topic,Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import NewTopicForm,PostForm
+from .forms import NewTopicForm,PostForm,NewBForm
 # Create your views here.
 
 
@@ -12,12 +12,23 @@ def home(request):
     boards=Boards.objects.all()
     return render(request,'Status/home.html',{"boards":boards})
 
+def new_board(request):
+    user = User.objects.first()
+    form=NewBForm(request.POST or None)
+    if request.method == 'POST':
+
+        if form.is_valid():
+            board=form.save(commit=False)
+            board.starter=request.user
+            board.save()
+            return redirect('home')
+        else:
+            form=NewBForm()
+    return render(request,'Status/new_board.html',{'form':form})
+
 def board_topics(request, pk):
     board = Boards.objects.get(pk=pk)
     return render(request, 'Status/topics.html', {'board': board})
-
-from django.contrib.auth.models import User
-from .forms import NewTopicForm
 
 @login_required
 def new_topic(request, pk):
