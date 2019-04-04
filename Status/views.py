@@ -4,6 +4,7 @@ from Status .models import Boards,Topic,Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import NewTopicForm,PostForm,NewBForm
+from django.db.models import Count
 # Create your views here.
 
 
@@ -27,8 +28,9 @@ def new_board(request):
     return render(request,'Status/new_board.html',{'form':form})
 
 def board_topics(request, pk):
-    board = Boards.objects.get(pk=pk)
-    return render(request, 'Status/topics.html', {'board': board})
+    board = get_object_or_404(Boards, pk=pk)
+    topics = board.topics.order_by('-last_updated').annotate(replies=Count('posts'))
+    return render(request, 'Status/topics.html', {'board': board,'topics':topics})
 
 @login_required
 def new_topic(request, pk):
@@ -53,6 +55,8 @@ def new_topic(request, pk):
 
 def topic_posts(request,pk,topic_pk):
     topic=get_object_or_404(Topic,board__pk=pk,pk=topic_pk)
+    topic.views += 1
+    topic.save()
     return render(request,'Status/topic_posts.html',{'topic':topic})
 
 @login_required
