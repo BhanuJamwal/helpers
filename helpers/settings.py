@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'accounts',
     'widget_tweaks',
     'Status',
+    'tweet',
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,7 @@ from accounts import views as accounts_views
 
 urlpatterns = [
     path('signup/', accounts_views.signup, name='signup'),
+    path('ajax/validate_user/',accounts_views.validate_user,name="validate_user"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(template_name='/home/bhanu/project/helpers/accounts/templates/accounts/login.html'), name='login'),
     path('reset/',auth_views.PasswordResetView.as_view(

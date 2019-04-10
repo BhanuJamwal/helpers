@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 # Create your views here.
 @csrf_exempt
@@ -30,3 +31,10 @@ class UserUpdateView(UpdateView):
 
     def get_object(self):
         return self.request.user
+
+def validate_user(request):
+	username=request.GET.get('username',None)
+	data={
+	'is_taken':User.objects.filter(username__iexact=username).exists()
+	}
+	return JsonResponse(data)
