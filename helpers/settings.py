@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'accounts',
     'widget_tweaks',
     'Status',
+    'onetime'
     
 ]
 
@@ -149,3 +150,6 @@ LOGIN_REDIRECT_URL = '/Status/home'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+NEXMO_API_KEY='26942665'
+NEXMO_API_SECRET='C8SRPIXatgidi3rj'
