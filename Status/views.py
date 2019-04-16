@@ -9,11 +9,12 @@ from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from onetime .mixins import TwoFactorMixin
 # Create your views here.
 
 
 
-class BoardListView(ListView):
+class BoardListView(TwoFactorMixin,ListView):
     model=Boards
     context_object_name = 'boards'
     template_name = 'Status/home.html'

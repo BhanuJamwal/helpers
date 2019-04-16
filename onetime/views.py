@@ -25,16 +25,13 @@ class NewView(LoginRequiredMixin,DetailView):
 class CreateView(LoginRequiredMixin,View):
 	def post(self,request):
 		number=self.find_or_set_number(request)
-		print(number)
 		response=self.send_verification_request(request,number)
-		print(response)
-		print("\n \n \n")
 		if (response['status'] == '0'):
 			request.session['verification_id'] = response['request_id']
 			return HttpResponseRedirect(reverse('onetime:verify')+"?next="+request.POST['next'])
 		else:
-			#logout(request)
-			#messages.add_message(request, messages.INFO, 'Could not verify your number. Please contact support.')
+			logout(request)
+			messages.add_message(request, messages.INFO, 'Could not verify your number. Please contact support.')
 			return HttpResponseRedirect('/Status/home')
 
 	def find_or_set_number(self, request):
