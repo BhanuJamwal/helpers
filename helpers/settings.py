@@ -143,8 +143,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    '/home/bhanu/project/helpers/Status/static',
+    #os.path.join(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 LOGIN_URL="/accounts/login"
 LOGIN_REDIRECT_URL = '/Status/home'
 LOGOUT_REDIRECT_URL = '/accounts/login'
